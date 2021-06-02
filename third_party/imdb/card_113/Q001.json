@@ -1,0 +1,19 @@
+{
+  "tables": {
+    "ct": 1,
+    "mc": 28889,
+    "t": 2528312,
+    "mi_idx": 1380035,
+    "it": 1,
+    "mi_idx,it": 250,
+    "t,mi_idx": 1380035,
+    "t,mi_idx,it": 250,
+    "mc,t": 28889,
+    "mc,t,mi_idx": 62658,
+    "mc,t,mi_idx,it": 147,
+    "ct,mc": 28657,
+    "ct,mc,t": 28657,
+    "ct,mc,t,mi_idx": 62017,
+    "ct,mc,t,mi_idx,it": 142
+  }
+}

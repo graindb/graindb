@@ -1,0 +1,45 @@
+{
+  "type": "JOIN",
+  "cost": 7080917.000000,
+  "cardinality": 127,
+  "children": [
+    {
+      "type": "SCAN",
+      "cost": 11000.000000,
+      "cardinality": 11000,
+      "table": "p2"
+    },
+    {
+      "type": "JOIN",
+      "cost": 7069790.000000,
+      "cardinality": 127,
+      "children": [
+        {
+          "type": "SCAN",
+          "cost": 3250038.000000,
+          "cardinality": 3250038,
+          "table": "likes_comment"
+        },
+        {
+          "type": "JOIN",
+          "cost": 3819625.000000,
+          "cardinality": 334,
+          "children": [
+            {
+              "type": "SCAN",
+              "cost": 3819290.000000,
+              "cardinality": 3819290,
+              "table": "comment"
+            },
+            {
+              "type": "SCAN",
+              "cost": 1.000000,
+              "cardinality": 1,
+              "table": "p1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

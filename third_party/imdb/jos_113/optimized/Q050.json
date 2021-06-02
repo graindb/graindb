@@ -1,0 +1,97 @@
+{
+  "type": "JOIN",
+  "cost": 5604473.000000,
+  "cardinality": 1,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 1.000000,
+    "cardinality": 1,
+    "table": "it1"
+  },
+  {
+    "type": "JOIN",
+    "cost": 5604471.000000,
+    "cardinality": 1,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 1.000000,
+      "cardinality": 1,
+      "table": "it2"
+    },
+    {
+      "type": "JOIN",
+      "cost": 5604469.000000,
+      "cardinality": 1,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 706674.000000,
+        "cardinality": 706674,
+        "table": "mi"
+      },
+      {
+        "type": "JOIN",
+        "cost": 4897794.000000,
+        "cardinality": 1,
+        "children": [
+        {
+          "type": "JOIN",
+          "cost": 4897792.000000,
+          "cardinality": 4,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 4523930.000000,
+            "cardinality": 4523930,
+            "table": "mk"
+          },
+          {
+            "type": "JOIN",
+            "cost": 373858.000000,
+            "cardinality": 9,
+            "children": [
+            {
+              "type": "JOIN",
+              "cost": 373848.000000,
+              "cardinality": 61,
+              "children": [
+              {
+                "type": "SCAN",
+                "cost": 373409.000000,
+                "cardinality": 373409,
+                "table": "mi_idx"
+              },
+              {
+                "type": "SCAN",
+                "cost": 378.000000,
+                "cardinality": 378,
+                "table": "t"
+              }
+              ]
+            },
+            {
+              "type": "SCAN",
+              "cost": 1.000000,
+              "cardinality": 1,
+              "table": "kt"
+            }
+            ]
+          }
+          ]
+        },
+        {
+          "type": "SCAN",
+          "cost": 1.000000,
+          "cardinality": 1,
+          "table": "k"
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

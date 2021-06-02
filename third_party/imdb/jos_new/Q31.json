@@ -1,0 +1,94 @@
+{
+  "type": "JOIN",
+  "children": [
+  {
+    "type": "SCAN",
+    "table": "it1"
+  },
+  {
+    "type": "JOIN",
+    "children": [
+    {
+      "type": "SCAN",
+      "table": "it2"
+    },
+    {
+      "type": "JOIN",
+      "children": [
+      {
+        "type": "SCAN",
+        "table": "k"
+      },
+      {
+        "type": "JOIN",
+        "children": [
+        {
+          "type": "SCAN",
+          "table": "cn"
+        },
+        {
+          "type": "JOIN",
+          "children": [
+          {
+            "type": "SCAN",
+            "table": "mc"
+          },
+          {
+            "type": "JOIN",
+            "children": [
+            {
+              "type": "JOIN",
+              "children": [
+              {
+                "type": "SCAN",
+                "table": "n"
+              },
+              {
+                "type": "SCAN",
+                "table": "ci"
+              }
+              ]
+            },
+            {
+              "type": "JOIN",
+              "children": [
+              {
+                "type": "SCAN",
+                "table": "mi"
+              },
+              {
+                "type": "JOIN",
+                "children": [
+                {
+                  "type": "SCAN",
+                  "table": "mi_idx"
+                },
+                {
+                  "type": "JOIN",
+                  "children": [
+                  {
+                    "type": "SCAN",
+                    "table": "mk"
+                  },
+                  {
+                    "type": "SCAN",
+                    "table": "t"
+                  }
+                  ]
+                }
+                ]
+              }
+              ]
+            }
+            ]
+          }
+          ]
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "SCAN",
+      "table": "dt2"
+    },
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "SCAN",
+          "table": "t"
+        },
+        {
+          "type": "SCAN",
+          "table": "dt1"
+        }
+      ]
+    }
+  ]
+}

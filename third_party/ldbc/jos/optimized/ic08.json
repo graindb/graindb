@@ -1,0 +1,31 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "SCAN",
+      "table": "p2"
+    },
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "SCAN",
+          "table": "comment"
+        },
+        {
+          "type": "JOIN",
+          "children": [
+            {
+              "type": "SCAN",
+              "table": "post"
+            },
+            {
+              "type": "SCAN",
+              "table": "p1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

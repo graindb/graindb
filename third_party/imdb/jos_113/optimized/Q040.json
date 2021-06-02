@@ -1,0 +1,97 @@
+{
+  "type": "JOIN",
+  "cost": 8274114.000000,
+  "cardinality": 6946,
+  "children": [
+  {
+    "type": "JOIN",
+    "cost": 8267150.000000,
+    "cardinality": 6946,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 29997.000000,
+      "cardinality": 29997,
+      "table": "ml"
+    },
+    {
+      "type": "JOIN",
+      "cost": 8230207.000000,
+      "cardinality": 4137,
+      "children": [
+      {
+        "type": "JOIN",
+        "cost": 8226067.000000,
+        "cardinality": 4279,
+        "children": [
+        {
+          "type": "JOIN",
+          "cost": 4571336.000000,
+          "cardinality": 47403,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 4523930.000000,
+            "cardinality": 4523930,
+            "table": "mk"
+          },
+          {
+            "type": "SCAN",
+            "cost": 3.000000,
+            "cardinality": 3,
+            "table": "k"
+          }
+          ]
+        },
+        {
+          "type": "JOIN",
+          "cost": 3650452.000000,
+          "cardinality": 12059,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 2287271.000000,
+            "cardinality": 2287271,
+            "table": "t"
+          },
+          {
+            "type": "JOIN",
+            "cost": 1351122.000000,
+            "cardinality": 13893,
+            "children": [
+            {
+              "type": "SCAN",
+              "cost": 1337140.000000,
+              "cardinality": 1337140,
+              "table": "mc"
+            },
+            {
+              "type": "SCAN",
+              "cost": 89.000000,
+              "cardinality": 89,
+              "table": "cn"
+            }
+            ]
+          }
+          ]
+        }
+        ]
+      },
+      {
+        "type": "SCAN",
+        "cost": 3.000000,
+        "cardinality": 3,
+        "table": "ct"
+      }
+      ]
+    }
+    ]
+  },
+  {
+    "type": "SCAN",
+    "cost": 18.000000,
+    "cardinality": 18,
+    "table": "lt"
+  }
+  ]
+}

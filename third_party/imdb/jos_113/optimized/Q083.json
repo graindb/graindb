@@ -1,0 +1,136 @@
+{
+  "type": "JOIN",
+  "cost": 8873456.000000,
+  "cardinality": 618,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 134170.000000,
+    "cardinality": 134170,
+    "table": "k"
+  },
+  {
+    "type": "JOIN",
+    "cost": 8738668.000000,
+    "cardinality": 618,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 4523930.000000,
+      "cardinality": 4523930,
+      "table": "mk"
+    },
+    {
+      "type": "JOIN",
+      "cost": 4214120.000000,
+      "cardinality": 6,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 84843.000000,
+        "cardinality": 84843,
+        "table": "cn"
+      },
+      {
+        "type": "JOIN",
+        "cost": 4129271.000000,
+        "cardinality": 6,
+        "children": [
+        {
+          "type": "JOIN",
+          "cost": 4129261.000000,
+          "cardinality": 6,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 2609129.000000,
+            "cardinality": 2609129,
+            "table": "mc"
+          },
+          {
+            "type": "JOIN",
+            "cost": 1520126.000000,
+            "cardinality": 5,
+            "children": [
+            {
+              "type": "JOIN",
+              "cost": 1520120.000000,
+              "cardinality": 5,
+              "children": [
+              {
+                "type": "JOIN",
+                "cost": 1520114.000000,
+                "cardinality": 5,
+                "children": [
+                {
+                  "type": "JOIN",
+                  "cost": 1520108.000000,
+                  "cardinality": 37,
+                  "children": [
+                  {
+                    "type": "SCAN",
+                    "cost": 135086.000000,
+                    "cardinality": 135086,
+                    "table": "cc"
+                  },
+                  {
+                    "type": "JOIN",
+                    "cost": 1384985.000000,
+                    "cardinality": 1749,
+                    "children": [
+                    {
+                      "type": "SCAN",
+                      "cost": 1381453.000000,
+                      "cardinality": 1381453,
+                      "table": "t"
+                    },
+                    {
+                      "type": "SCAN",
+                      "cost": 1783.000000,
+                      "cardinality": 1783,
+                      "table": "mi"
+                    }
+                    ]
+                  }
+                  ]
+                },
+                {
+                  "type": "SCAN",
+                  "cost": 1.000000,
+                  "cardinality": 1,
+                  "table": "cct1"
+                }
+                ]
+              },
+              {
+                "type": "SCAN",
+                "cost": 1.000000,
+                "cardinality": 1,
+                "table": "kt"
+              }
+              ]
+            },
+            {
+              "type": "SCAN",
+              "cost": 1.000000,
+              "cardinality": 1,
+              "table": "it1"
+            }
+            ]
+          }
+          ]
+        },
+        {
+          "type": "SCAN",
+          "cost": 4.000000,
+          "cardinality": 4,
+          "table": "ct"
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

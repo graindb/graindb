@@ -1,0 +1,13 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "SCAN",
+      "table": "part"
+    },
+    {
+      "type": "SCAN",
+      "table": "lineitem"
+    }
+  ]
+}

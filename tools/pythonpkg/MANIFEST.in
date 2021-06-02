@@ -1,0 +1,3 @@
+recursive-include tests *.py
+recursive-include duckdb_query_graph *.js
+include *.h *.hpp *.cpp 

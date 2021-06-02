@@ -1,0 +1,7 @@
+.*\.sh
+.*\.tar.gz
+dependencies\.R
+git
+configure
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -1,0 +1,40 @@
+{
+  "type": "JOIN",
+  "children": [
+  {
+    "type": "JOIN",
+    "children": [
+    {
+      "type": "SCAN",
+      "table": "mk"
+    },
+    {
+      "type": "JOIN",
+      "children": [
+      {
+        "type": "SCAN",
+        "table": "t"
+      },
+      {
+        "type": "JOIN",
+        "children": [
+        {
+          "type": "SCAN",
+          "table": "mc"
+        },
+        {
+          "type": "SCAN",
+          "table": "cn"
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  },
+  {
+    "type": "SCAN",
+    "table": "k"
+  }
+  ]
+}

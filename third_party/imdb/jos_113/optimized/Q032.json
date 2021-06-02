@@ -1,0 +1,97 @@
+{
+  "type": "JOIN",
+  "cost": 5557829.000000,
+  "cardinality": 40,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 901343.000000,
+    "cardinality": 901343,
+    "table": "an"
+  },
+  {
+    "type": "JOIN",
+    "cost": 4656446.000000,
+    "cardinality": 30,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 3140339.000000,
+      "cardinality": 3140339,
+      "table": "chn"
+    },
+    {
+      "type": "JOIN",
+      "cost": 1516077.000000,
+      "cardinality": 30,
+      "children": [
+      {
+        "type": "JOIN",
+        "cost": 1516046.000000,
+        "cardinality": 30,
+        "children": [
+        {
+          "type": "SCAN",
+          "cost": 84843.000000,
+          "cardinality": 84843,
+          "table": "cn"
+        },
+        {
+          "type": "JOIN",
+          "cost": 1431173.000000,
+          "cardinality": 31,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 198519.000000,
+            "cardinality": 198519,
+            "table": "mc"
+          },
+          {
+            "type": "JOIN",
+            "cost": 1232623.000000,
+            "cardinality": 108,
+            "children": [
+            {
+              "type": "SCAN",
+              "cost": 512825.000000,
+              "cardinality": 512825,
+              "table": "t"
+            },
+            {
+              "type": "JOIN",
+              "cost": 719690.000000,
+              "cardinality": 453,
+              "children": [
+              {
+                "type": "SCAN",
+                "cost": 713828.000000,
+                "cardinality": 713828,
+                "table": "ci"
+              },
+              {
+                "type": "SCAN",
+                "cost": 5409.000000,
+                "cardinality": 5409,
+                "table": "n"
+              }
+              ]
+            }
+            ]
+          }
+          ]
+        }
+        ]
+      },
+      {
+        "type": "SCAN",
+        "cost": 1.000000,
+        "cardinality": 1,
+        "table": "rt"
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

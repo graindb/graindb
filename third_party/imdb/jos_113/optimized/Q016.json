@@ -1,0 +1,58 @@
+{
+  "type": "JOIN",
+  "cost": 945975.000000,
+  "cardinality": 0,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 1.000000,
+    "cardinality": 1,
+    "table": "ct"
+  },
+  {
+    "type": "JOIN",
+    "cost": 945974.000000,
+    "cardinality": 0,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 113.000000,
+      "cardinality": 113,
+      "table": "it"
+    },
+    {
+      "type": "JOIN",
+      "cost": 945861.000000,
+      "cardinality": 0,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 552777.000000,
+        "cardinality": 552777,
+        "table": "mi"
+      },
+      {
+        "type": "JOIN",
+        "cost": 393084.000000,
+        "cardinality": 0,
+        "children": [
+        {
+          "type": "SCAN",
+          "cost": 391666.000000,
+          "cardinality": 391666,
+          "table": "t"
+        },
+        {
+          "type": "SCAN",
+          "cost": 1418.000000,
+          "cardinality": 1418,
+          "table": "mc"
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "type": "JOIN",
+  "children": [
+  {
+    "type": "JOIN",
+    "children": [
+    {
+      "type": "JOIN",
+      "children": [
+      {
+        "type": "JOIN",
+        "children": [
+        {
+          "type": "SCAN",
+          "table": "mc"
+        },
+        {
+          "type": "SCAN",
+          "table": "cn"
+        }
+        ]
+      },
+      {
+        "type": "JOIN",
+        "children": [
+        {
+          "type": "JOIN",
+          "children": [
+          {
+            "type": "SCAN",
+            "table": "t"
+          },
+          {
+            "type": "JOIN",
+            "children": [
+            {
+              "type": "SCAN",
+              "table": "mk"
+            },
+            {
+              "type": "SCAN",
+              "table": "k"
+            }
+            ]
+          }
+          ]
+        },
+        {
+          "type": "SCAN",
+          "table": "ml"
+        }
+        ]
+      }
+      ]
+    },
+    {
+      "type": "SCAN",
+      "table": "lt"
+    }
+    ]
+  },
+  {
+    "type": "SCAN",
+    "table": "ct"
+  }
+  ]
+}

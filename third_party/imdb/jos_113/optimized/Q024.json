@@ -1,0 +1,97 @@
+{
+  "type": "JOIN",
+  "cost": 37835767.000000,
+  "cardinality": 32,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 674692.000000,
+    "cardinality": 674692,
+    "table": "an"
+  },
+  {
+    "type": "JOIN",
+    "cost": 37161043.000000,
+    "cardinality": 14,
+    "children": [
+    {
+      "type": "JOIN",
+      "cost": 37161028.000000,
+      "cardinality": 14,
+      "children": [
+      {
+        "type": "JOIN",
+        "cost": 37161013.000000,
+        "cardinality": 54,
+        "children": [
+        {
+          "type": "SCAN",
+          "cost": 29997.000000,
+          "cardinality": 29997,
+          "table": "ml"
+        },
+        {
+          "type": "JOIN",
+          "cost": 37130962.000000,
+          "cardinality": 390,
+          "children": [
+          {
+            "type": "SCAN",
+            "cost": 340186.000000,
+            "cardinality": 340186,
+            "table": "t"
+          },
+          {
+            "type": "JOIN",
+            "cost": 36790386.000000,
+            "cardinality": 2670,
+            "children": [
+            {
+              "type": "SCAN",
+              "cost": 36244344.000000,
+              "cardinality": 36244344,
+              "table": "ci"
+            },
+            {
+              "type": "JOIN",
+              "cost": 543372.000000,
+              "cardinality": 17,
+              "children": [
+              {
+                "type": "SCAN",
+                "cost": 543291.000000,
+                "cardinality": 543291,
+                "table": "n"
+              },
+              {
+                "type": "SCAN",
+                "cost": 64.000000,
+                "cardinality": 64,
+                "table": "pi"
+              }
+              ]
+            }
+            ]
+          }
+          ]
+        }
+        ]
+      },
+      {
+        "type": "SCAN",
+        "cost": 1.000000,
+        "cardinality": 1,
+        "table": "lt"
+      }
+      ]
+    },
+    {
+      "type": "SCAN",
+      "cost": 1.000000,
+      "cardinality": 1,
+      "table": "it"
+    }
+    ]
+  }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "type": "JOIN",
+  "cost": 19174763.000000,
+  "cardinality": 1147084,
+  "children": [
+    {
+      "type": "SCAN",
+      "cost": 14808183.000000,
+      "cardinality": 14808183,
+      "table": "lineitem"
+    },
+    {
+      "type": "JOIN",
+      "cost": 3219496.000000,
+      "cardinality": 573157,
+      "children": [
+        {
+          "type": "JOIN",
+          "cost": 2646314.000000,
+          "cardinality": 573157,
+          "children": [
+            {
+              "type": "SCAN",
+              "cost": 1500000.000000,
+              "cardinality": 1500000,
+              "table": "customer"
+            },
+            {
+              "type": "SCAN",
+              "cost": 573157.000000,
+              "cardinality": 573157,
+              "table": "orders"
+            }
+          ]
+        },
+        {
+          "type": "SCAN",
+          "cost": 25.000000,
+          "cardinality": 25,
+          "table": "nation"
+        }
+      ]
+    }
+  ]
+}

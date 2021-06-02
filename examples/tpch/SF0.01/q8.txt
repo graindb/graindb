@@ -1,0 +1,5 @@
+o_year	mkt_share
+BIGINT	DOUBLE
+[ Rows: 2]
+1995	0.000000
+1996	0.000000
