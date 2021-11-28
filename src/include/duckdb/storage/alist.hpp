@@ -12,12 +12,9 @@
 #include "duckdb/common/types/chunk_collection.hpp"
 #include "duckdb/common/types/data_chunk.hpp"
 
-#include <boost/dynamic_bitset.hpp>
-#include <utility>
-
 namespace duckdb {
 
-typedef boost::dynamic_bitset<> bitmask_vector;
+typedef vector<bool> bitmask_vector;
 typedef vector<row_t> rows_vector;
 
 // List for each source vertex (with edges and destination vertices)

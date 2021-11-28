@@ -256,17 +256,17 @@ string PhysicalTableScan::ExtraRenderInformation() const {
 	}
 	result = result.substr(0, result.size() - 1);
 	result += "]";
-	if (seq_scan) {
-		if (rows_count >= 0) {
-			result += "\nROWS_FILTER(" + to_string(rows_count) + "/" + to_string(table.info->cardinality) + ")";
-		} else if (row_bitmask) {
-			result += "\nROWS_BITMASK(" + to_string(row_bitmask->count()) + "/" + to_string(row_bitmask->size()) + ")";
-			result +=
-			    "\nZONE_BITMASK(" + to_string(zone_bitmask->count()) + "/" + to_string(zone_bitmask->size()) + ")";
-		}
-	} else {
-		result += "\nLOOKUP(" + to_string(lookup_size) + "/" + to_string(table.info->cardinality) + ")";
-	}
+//	if (seq_scan) {
+//		if (rows_count >= 0) {
+//			result += "\nROWS_FILTER(" + to_string(rows_count) + "/" + to_string(table.info->cardinality) + ")";
+//		} else if (row_bitmask) {
+//			result += "\nROWS_BITMASK(" + to_string(row_bitmask->count()) + "/" + to_string(row_bitmask->size()) + ")";
+//			result +=
+//			    "\nZONE_BITMASK(" + to_string(zone_bitmask->count()) + "/" + to_string(zone_bitmask->size()) + ")";
+//		}
+//	} else {
+//		result += "\nLOOKUP(" + to_string(lookup_size) + "/" + to_string(table.info->cardinality) + ")";
+//	}
 
 	return result;
 }

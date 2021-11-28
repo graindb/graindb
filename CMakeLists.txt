@@ -16,10 +16,10 @@ set(GRAINDB_VERSION
     ${GRAINDB_MAJOR_VERSION}.${GRAINDB_MINOR_VERSION}.${GRAINDB_PATCH_VERSION})
 
 find_package(Threads REQUIRED)
-find_package(Boost 1.75.0 REQUIRED)
-if (Boost_FOUND)
-  include_directories(${Boost_INCLUDE_DIRS})
-endif ()
+#find_package(Boost 1.75.0 REQUIRED)
+#if (Boost_FOUND)
+#  include_directories(${Boost_INCLUDE_DIRS})
+#endif ()
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
