@@ -28,13 +28,13 @@ debug:
 	mkdir -p build/debug && \
 	cd build/debug && \
 	cmake $(GENERATOR) $(FORCE_COLOR) ${WARNINGS_AS_ERRORS} ${DISABLE_UNITY_FLAG} -DCMAKE_BUILD_TYPE=Debug ../.. && \
-	cmake --build -j ${THREAD_NUM} .
+	cmake --build . -- -j ${THREAD_NUM}
 
 release:
 	mkdir -p build/release && \
 	cd build/release && \
 	cmake $(GENERATOR) $(FORCE_COLOR) ${WARNINGS_AS_ERRORS} ${DISABLE_UNITY_FLAG} -DCMAKE_BUILD_TYPE=Release ../.. && \
-	cmake --build -j ${THREAD_NUM} .
+	cmake --build . -- -j ${THREAD_NUM}
 
 unittest: debug
 	build/debug/test/unittest

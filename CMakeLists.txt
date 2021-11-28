@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.7)
+cmake_minimum_required(VERSION 2.8.12)
 # if(APPLE) # needs to be before project() SET(CMAKE_CXX_FLAGS -stdlib=libc++)
 # SET(CMAKE_OSX_DEPLOYMENT_TARGET "10.7" CACHE STRING "Minimum OS X deployment
 # version") endif()
