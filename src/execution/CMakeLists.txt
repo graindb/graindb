@@ -15,7 +15,6 @@ add_library_unity(duckdb_execution
                   join_hashtable.cpp
                   physical_operator.cpp
                   physical_plan_generator.cpp
-                  rai_hashtable.cpp
                   sip_hashtable.cpp
                   window_segment_tree.cpp)
 set(ALL_OBJECT_FILES

@@ -16,6 +16,7 @@
 #define NUM_RUN_TIMES 5
 
 using namespace std;
+using namespace duckdb;
 
 struct QueryRunResult {
 public:

@@ -12,7 +12,6 @@
 #include "duckdb/execution/join_hashtable.hpp"
 #include "duckdb/execution/operator/join/physical_comparison_join.hpp"
 #include "duckdb/execution/physical_operator.hpp"
-#include "duckdb/execution/rai_hashtable.hpp"
 #include "duckdb/planner/operator/logical_join.hpp"
 
 namespace duckdb {
