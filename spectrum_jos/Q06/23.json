@@ -1,0 +1,49 @@
+{
+  "type": "JOIN",
+  "cost": 7044.000000,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 0.000000,
+    "table": "n"
+  },
+  {
+    "type": "JOIN",
+    "cost": 4695.000000,
+    "children": [
+    {
+      "type": "JOIN",
+      "cost": 14.000000,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "mk"
+      },
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "k"
+      }
+      ]
+    },
+    {
+      "type": "JOIN",
+      "cost": 3099.000000,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "ci"
+      },
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "t"
+      }
+      ]
+    }
+    ]
+  }
+  ]
+}

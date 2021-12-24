@@ -1,0 +1,38 @@
+{
+  "type": "JOIN",
+  "cost": 7519028.000000,
+  "children": [
+  {
+    "type": "SCAN",
+    "cost": 0.000000,
+    "table": "k"
+  },
+  {
+    "type": "JOIN",
+    "cost": 5007852.000000,
+    "children": [
+    {
+      "type": "JOIN",
+      "cost": 2742670.000000,
+      "children": [
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "t"
+      },
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "mk"
+      }
+      ]
+    },
+    {
+      "type": "SCAN",
+      "cost": 0.000000,
+      "table": "mi"
+    }
+    ]
+  }
+  ]
+}

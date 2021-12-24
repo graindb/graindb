@@ -1,0 +1,49 @@
+{
+  "type": "JOIN",
+  "cost": 20060.000000,
+  "children": [
+  {
+    "type": "JOIN",
+    "cost": 20054.000000,
+    "children": [
+    {
+      "type": "SCAN",
+      "cost": 0.000000,
+      "table": "mi_idx"
+    },
+    {
+      "type": "JOIN",
+      "cost": 13356.000000,
+      "children": [
+      {
+        "type": "JOIN",
+        "cost": 12951.000000,
+        "children": [
+        {
+          "type": "SCAN",
+          "cost": 0.000000,
+          "table": "mk"
+        },
+        {
+          "type": "SCAN",
+          "cost": 0.000000,
+          "table": "k"
+        }
+        ]
+      },
+      {
+        "type": "SCAN",
+        "cost": 0.000000,
+        "table": "t"
+      }
+      ]
+    }
+    ]
+  },
+  {
+    "type": "SCAN",
+    "cost": 0.000000,
+    "table": "it"
+  }
+  ]
+}
