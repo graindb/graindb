@@ -123,8 +123,6 @@ public:
 	//! Finalize the build of the HT, constructing the actual hash table and making the HT ready for probing. Finalize
 	//! must be called before any call to Probe, and after Finalize is called Build should no longer be ever called.
 	void Finalize();
-	// WARNING: Deprecated!!! same as Finalize(), except we generate semi-join filters as by-product
-	void FinalizeWithFilter(RAIInfo &rai_info);
 	//! Probe the HT with the given input chunk, resulting in the given result
 	unique_ptr<SIPScanStructure> Probe(DataChunk &keys);
 

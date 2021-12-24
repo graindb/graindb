@@ -42,11 +42,11 @@ public:
 		cout << "Start running ... params: [" << jos_input << ", " << query_id << ", " << start_jos_id << ", "
 		     << num_jos << "]" << endl;
 		string query = GetQuery();
-		cout << "Query plan text: " << query << endl;
 		vector<QueryRunResult> query_results;
 		cout << "-------------------------------" << endl;
 		cout << "||    QUERY " << query_id << "    ||" << endl;
 		cout << "-------------------------------" << endl;
+		cout << "jos_id,graindb,num_tuples,elapsed_time" << endl;
 		// Run query without rai
 		for (idx_t i = start_jos_id; i < num_jos; i++) {
 			DuckDB db(nullptr);
@@ -64,7 +64,7 @@ public:
 			Initialize(conn, true);
 			auto query_result = RunQueryWithAJos(conn, query, i, true);
 			cout << query_result.jos_id << "," << (query_result.enable_rai ? "T," : "F,") << query_result.num_tuples
-			     << ", " << query_result.elapsed_time_ms << endl;
+			     << "," << query_result.elapsed_time_ms << endl;
 			query_results.push_back(query_result);
 		}
 	}
@@ -95,8 +95,6 @@ private:
 	}
 
 	QueryRunResult RunQueryWithAJos(Connection &conn, string &query, int jos_id, bool enable_rai) {
-		cout << "Start running query with a jos ... " << jos_id << ", " << (enable_rai ? "ENABLE_RAI" : "DISABLE_RAI")
-		     << endl;
 		string jos = GetJos(jos_id);
 		idx_t num_tuples = 0;
 		vector<double> elapsed_times;

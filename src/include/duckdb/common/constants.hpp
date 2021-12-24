@@ -46,14 +46,9 @@ using std::vector;
 #define ENABLE_PROFILING false
 
 //! Params for experiment evaluation
-#define ENABLE_ALISTS true
-#define ENABLE_RAI_JOIN_MERGE true
-#define ENABLE_RID_HT false
-#define ENABLE_LOOKUP_JOIN false
-#define ENABLE_LOOKUP_FILTER false
-#define ENABLE_ZONE_FILTER false
+#define ENABLE_ALISTS false
+#define ENABLE_RAI_JOIN_MERGE false
 #define ENABLE_ADAPTIVE_FILTER false
-#define ENABLE_ADAPTIVE_JOIN true
 
 //! a saner size_t for loop indices etc
 typedef uint64_t idx_t;
@@ -123,11 +118,6 @@ struct CostModel {
 struct SIPJoin {
 	constexpr static idx_t NLAJ_MAGIC = 2048;
 	constexpr static double SHJ_MAGIC = 0.8;
-};
-
-struct RAIJoin {
-	constexpr static idx_t MAX_ROWS_SIZE = 2048;
-	constexpr static double MAX_ZONE_RATE = 0.8;
 };
 
 uint64_t NextPowerOfTwo(uint64_t v);

@@ -341,39 +341,20 @@ void SIPHashTable::Build(DataChunk &keys, DataChunk &payload) {
 
 	// hash the keys and obtain an entry in the list
 	// note that we only hash the keys used in the equality comparison
-#if ENABLE_PROFILING
-	auto hash_start = std::chrono::high_resolution_clock::now();
-#endif
 	Vector hash_values(TypeId::HASH);
 	Hash(keys, *current_sel, added_count, hash_values);
-#if ENABLE_PROFILING
-	auto hash_end = std::chrono::high_resolution_clock::now();
-#endif
 
 	// serialize the keys to the key locations
 	for (idx_t i = 0; i < keys.column_count(); i++) {
 		SerializeVectorData(key_data[i], keys.data[i].type, *current_sel, added_count, key_locations);
 	}
-#if ENABLE_PROFILING
-	auto serialize_keys_end = std::chrono::high_resolution_clock::now();
-#endif
 	// now serialize the payload
 	if (!build_types.empty()) {
 		for (idx_t i = 0; i < payload.column_count(); i++) {
 			SerializeVector(payload.data[i], payload.size(), *current_sel, added_count, key_locations);
 		}
 	}
-#if ENABLE_PROFILING
-	auto serialize_payload_end = std::chrono::high_resolution_clock::now();
-#endif
 	SerializeVector(hash_values, payload.size(), *current_sel, added_count, key_locations);
-#if ENABLE_PROFILING
-	auto serialize_hash_end = std::chrono::high_resolution_clock::now();
-	build_hash_time += (hash_end - hash_start).count();
-	build_serialize_keys_time += (serialize_keys_end - hash_end).count();
-	build_serialize_payload_time += (serialize_payload_end - serialize_keys_end).count();
-	build_serialize_hash_time += (serialize_hash_end - serialize_payload_end).count();
-#endif
 }
 
 void SIPHashTable::InsertHashes(Vector &hashes, idx_t count, data_ptr_t key_locations[]) {
@@ -492,52 +473,6 @@ void SIPHashTable::GenerateBitmaskFilter(RAIInfo &rai_info, bool use_alist) {
 			}
 		}
 	}
-}
-
-void SIPHashTable::FinalizeWithFilter(RAIInfo &rai_info) {
-	// the build has finished, now iterate over all the nodes and construct the final hash table
-	// decide here to use the dense-ID HT or stick to the regular HT
-	// select a HT that has at least 50% empty space
-	idx_t capacity = NextPowerOfTwo(std::max(count * 2, (idx_t)(Storage::BLOCK_ALLOC_SIZE / sizeof(data_ptr_t)) + 1));
-	// size needs to be a power of 2
-	assert((capacity & (capacity - 1)) == 0);
-	bitmask = capacity - 1;
-
-	// allocate the HT and initialize it with all-zero entries
-	hash_map = buffer_manager.Allocate(capacity * sizeof(data_ptr_t));
-	memset(hash_map->node->buffer, 0, capacity * sizeof(data_ptr_t));
-
-	Vector hashes(TypeId::HASH);
-	Vector keys(TypeId::INT64);
-	auto hash_data = FlatVector::GetData<hash_t>(hashes);
-	auto key_data = FlatVector::GetData<int64_t>(keys);
-	data_ptr_t key_locations[STANDARD_VECTOR_SIZE];
-	// now construct the actual hash table; scan the nodes
-	// as we can the nodes we pin all the blocks of the HT and keep them pinned until the HT is destroyed
-	// this is so that we can keep pointers around to the blocks
-	for (auto &block : blocks) {
-		auto handle = buffer_manager.Pin(block.block_id);
-		data_ptr_t dataptr = handle->node->buffer;
-		idx_t entry = 0;
-		while (entry < block.count) {
-			// fetch the next vector of entries from the blocks
-			idx_t next = std::min((idx_t)STANDARD_VECTOR_SIZE, block.count - entry);
-			for (idx_t i = 0; i < next; i++) {
-				key_data[i] = Load<int64_t>((data_ptr_t)dataptr);
-				hash_data[i] = Load<hash_t>((data_ptr_t)(dataptr + tuple_size));
-				key_locations[i] = dataptr;
-				dataptr += entry_size;
-			}
-			// now insert into the hash table
-			InsertHashes(hashes, next, key_locations);
-			// now generate semi-join filter
-
-			entry += next;
-		}
-		finalize_pinned_handles.push_back(move(handle));
-	}
-	GenerateBitmaskFilter(rai_info, false);
-	finalized = true;
 }
 
 void SIPHashTable::FillBitmaskWithAList(Vector &key_vector, idx_t count, RAIInfo &rai_info) {

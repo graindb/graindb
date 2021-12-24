@@ -66,6 +66,7 @@ bool SIPJoinRewriter::BindRAIInfo(LogicalComparisonJoin &join, vector<unique_ptr
 		           right->binding.column_ordinal == rai->column_ids[1]) { // TARGET_EDGE
 			rai_info->rai_type = RAIType::TARGET_EDGE;
 			check_if_enable_aj = true;
+#if ENABLE_ALISTS
 		} else if (left->binding.table == rai->table && right->binding.table == rai->referenced_tables[0] &&
 		           left->binding.column_ordinal == rai->column_ids[0] &&
 		           right->binding.column_ordinal == rai->referenced_columns[0]) { // EDGE_SOURCE
@@ -84,7 +85,8 @@ bool SIPJoinRewriter::BindRAIInfo(LogicalComparisonJoin &join, vector<unique_ptr
 					}
 				}
 			}
-		} else if (left->binding.table == rai->table && right->binding.table == rai->referenced_tables[1] &&
+        }
+		else if (left->binding.table == rai->table && right->binding.table == rai->referenced_tables[1] &&
 		           left->binding.column_ordinal == rai->column_ids[1] &&
 		           right->binding.column_ordinal == rai->referenced_columns[1]) { // EDGE_TARGET
 			rai_info->rai_type = RAIType::EDGE_TARGET;
@@ -105,6 +107,7 @@ bool SIPJoinRewriter::BindRAIInfo(LogicalComparisonJoin &join, vector<unique_ptr
 			// backward
 			rai_info->rai_type = RAIType::SELF;
 			rai_info->forward = false;
+#endif
 		}
 
 		switch (rai_info->rai_type) {
@@ -126,6 +129,7 @@ bool SIPJoinRewriter::BindRAIInfo(LogicalComparisonJoin &join, vector<unique_ptr
 			condition.rais.push_back(move(rai_info));
 			return true;
 		}
+#if ENABLE_ALISTS
 		case RAIType::EDGE_TARGET:
 		case RAIType::EDGE_SOURCE: {
 			rai_info->rai = rai.get();
@@ -159,6 +163,7 @@ bool SIPJoinRewriter::BindRAIInfo(LogicalComparisonJoin &join, vector<unique_ptr
 			condition.rais.push_back(move(rai_info));
 			return true;
 		}
+#endif
 		default:
 			continue;
 		}
