@@ -1,5 +1,0 @@
-CREATE VERTEX TABLE Person(p_id INTEGER PRIMARY KEY, name VARCHAR, gender VARCHAR GLABEL, age INTEGER);
-INSERT INTO Person VALUES(0, 'Alice', 'F', 23);
-INSERT INTO Person VALUES(1, 'Bob', 'M', 20);
-INSERT INTO Person VALUES(2, 'David', 'M', 25);
-INSERT INTO Person VALUES(3, 'Tom', 'M', 21);

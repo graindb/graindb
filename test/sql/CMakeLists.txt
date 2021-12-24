@@ -30,7 +30,6 @@ add_subdirectory(storage)
 add_subdirectory(update)
 
 if(NOT WIN32 AND NOT SUN)
-  add_subdirectory(job)
   add_subdirectory(tpch)
   add_subdirectory(tpcds)
 endif()

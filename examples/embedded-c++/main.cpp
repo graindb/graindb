@@ -416,31 +416,6 @@ void testTPCHCreateRAI() {
 	}
 }
 
-// IMDB Q1/Q2/Q3/Q4
-void testJOBEnumeratedPlans() {
-	DuckDB db(nullptr);
-	Connection con(db);
-	auto file_system = make_unique<FileSystem>();
-	string jo_file_dir = "/Users/guodong/Developer/graindb-optimizer/imdb_new/jos/Q01/";
-	imdb::dbgen_small(con, true, true);
-	auto q1 = imdb::get_113_query(1);
-	con.EnableProfiling();
-	for (idx_t i = 1; i < 225; i++) {
-		string jo_file = jo_file_dir + to_string(i) + ".json";
-		if (!file_system->FileExists(jo_file)) {
-			cout << "JO file not exists!" << endl;
-			continue;
-		}
-		ifstream ifs(jo_file);
-		string jo_json((istreambuf_iterator<char>(ifs)), (istreambuf_iterator<char>()));
-		con.EnableExplicitJoinOrder(jo_json);
-		auto result = con.Query(q1);
-		cout << "====== PLAN-" << i << endl;
-		cout << con.GetProfilingInformation();
-		cout << result->ToString() << endl;
-	}
-}
-
 void testLDBCEnumeratedPlans() {
 	string ldbc_ic01a = "select p2.id, p2.p_lastname, p2.p_birthday, p2.p_creationdate, p2.p_gender, p2.p_browserused, "
 	                    "p2.p_locationip, pl.pl_name from person p1 JOIN (knows JOIN (person p2 JOIN place pl ON "
