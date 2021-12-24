@@ -6,7 +6,7 @@
 using namespace duckdb;
 using namespace std;
 
-#define SF 10
+#define SF 30
 
 #define LDBC_QUERY_BODY(QNR, PARAM, ENABLE_RAIS, JO_NAME)                                                              \
 	virtual void Load(DuckDBBenchmarkState *state) {                                                                   \
