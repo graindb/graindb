@@ -1,0 +1,40 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "SCAN",
+          "table": "ps_tag_ps"
+        },
+        {
+          "type": "JOIN",
+          "children": [
+            {
+              "type": "SCAN",
+              "table": "p2"
+            },
+            {
+              "type": "JOIN",
+              "children": [
+                {
+                  "type": "SCAN",
+                  "table": "k2"
+                },
+                {
+                  "type": "SCAN",
+                  "table": "p1k1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "SCAN",
+      "table": "tag"
+    }
+  ]
+}

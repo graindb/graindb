@@ -1,0 +1,58 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "JOIN",
+          "children": [
+            {
+              "type": "SCAN",
+              "table": "m2"
+            },
+            {
+              "type": "SCAN",
+              "table": "pl2"
+            }
+          ]
+        },
+        {
+          "type": "JOIN",
+          "children": [
+            {
+              "type": "SCAN",
+              "table": "p2"
+            },
+            {
+              "type": "JOIN",
+              "children": [
+                {
+                  "type": "SCAN",
+                  "table": "m1"
+                },
+                {
+                  "type": "SCAN",
+                  "table": "pl1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "SCAN",
+          "table": "k2"
+        },
+        {
+          "type": "table",
+          "table": "p1k1"
+        }
+      ]
+    }
+  ]
+}

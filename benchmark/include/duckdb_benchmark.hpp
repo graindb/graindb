@@ -22,7 +22,7 @@ struct DuckDBBenchmarkState : public BenchmarkState {
 	DuckDB db;
 	Connection conn;
 
-	DuckDBBenchmarkState(string path) : db(path.empty() ? nullptr : path.c_str()), conn(db) {
+	explicit DuckDBBenchmarkState(string path) : db(path.empty() ? nullptr : path.c_str()), conn(db) {
 		conn.DisableProfiling();
 	}
 	virtual ~DuckDBBenchmarkState() {
@@ -57,6 +57,10 @@ public:
 	virtual string GetCard() {
 		return string();
 	}
+	virtual string GetViews() {
+		return string();
+	}
+
 	//! Run a bunch of queries, only called if GetQuery() returns an empty string
 	virtual void RunBenchmark(DuckDBBenchmarkState *state) {
 	}
@@ -86,6 +90,10 @@ public:
 	unique_ptr<BenchmarkState> Initialize() override {
 		auto state = CreateBenchmarkState();
 		Load(state.get());
+		string views = GetViews();
+		if (!views.empty()) {
+			state->conn.Query(views);
+		}
 		string jo = GetJO();
 		if (!jo.empty()) {
 			state->conn.EnableExplicitJoinOrder(jo);

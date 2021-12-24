@@ -1,11 +1,9 @@
-# if len(sys.argv) != 3:
-#     print("USAGE: python3 scripts/extract_query_latency.py SOURCE_FILE AVERAGE_FILE")
-#     sys.exit()
+if len(sys.argv) != 3:
+    print("USAGE: python3 scripts/extract_query_latency.py SOURCE_FILE AVERAGE_FILE")
+    sys.exit()
 
-# source_file = str(sys.argv[1])
-# average_file = str(sys.argv[2])
-source_file = "/Users/guodong/Developer/graindb-benchmark/imdb_optimal/113/default_jos/imdb_113_default_jos_sip.out"
-average_file = "/Users/guodong/Developer/graindb-benchmark/imdb_optimal/113/default_jos/imdb_113_default_jos_sip_avg.out"
+source_file = str(sys.argv[1])
+average_file = str(sys.argv[2])
 average = open(average_file, 'w+')
 
 with open(source_file, 'r') as source:
@@ -40,4 +38,4 @@ with open(source_file, 'r') as source:
             row_id += 1
             continue
 
-    # target.close()
+average.close()

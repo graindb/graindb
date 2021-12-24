@@ -1,4 +1,3 @@
-#include "dbgen.hpp"
 #include "duckdb.hpp"
 #include "duckdb/catalog/catalog_entry/schema_catalog_entry.hpp"
 #include "duckdb/main/client_context.hpp"
@@ -6,13 +5,13 @@
 #include "duckdb/storage/data_table.hpp"
 #include "duckdb/transaction/transaction.hpp"
 #include "imdb.hpp"
-#include "ldbc.hpp"
 
 #include <algorithm>
 #include <chrono>
 #include <fstream>
 #include <iostream>
 #include <thread>
+#include <utility>
 
 #define NUM_RUN_TIMES 5
 
@@ -35,7 +34,7 @@ public:
 class SpectrumRunner {
 public:
 	SpectrumRunner(string jos_input, int query_id, int start_jos_id, int num_jos)
-	    : jos_input(jos_input), query_id(query_id), start_jos_id(start_jos_id), num_jos(num_jos) {
+	    : jos_input(move(jos_input)), query_id(query_id), start_jos_id(start_jos_id), num_jos(num_jos) {
 	}
 
 	void Run() {
@@ -67,9 +66,6 @@ public:
 			     << ", " << query_result.elapsed_time_ms << endl;
 			query_results.push_back(query_result);
 		}
-		// Display query results
-		// for (auto &result : query_results) {
-		// }
 	}
 
 private:
@@ -103,12 +99,6 @@ private:
 		string jos = GetJos(jos_id);
 		idx_t num_tuples = 0;
 		vector<double> elapsed_times;
-		// cold run
-		// conn.EnableProfiling();
-		// conn.EnableExplicitJoinOrder(jos);
-		// auto result = conn.Query(query);
-		// cout << conn.GetProfilingInformation();
-		// hot run
 		for (int i = 0; i < NUM_RUN_TIMES; i++) {
 			Profiler profiler;
 			profiler.Start();
@@ -141,7 +131,7 @@ protected:
 class JOBSpectrumRunner : public SpectrumRunner {
 public:
 	JOBSpectrumRunner(string jos_input, int query_id, int start_jos_id, int num_jos)
-	    : SpectrumRunner(jos_input, query_id, start_jos_id, num_jos) {
+	    : SpectrumRunner(move(jos_input), query_id, start_jos_id, num_jos) {
 	}
 
 private:

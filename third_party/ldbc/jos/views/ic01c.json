@@ -1,0 +1,31 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "SCAN",
+      "table": "p2pl"
+    },
+    {
+      "type": "JOIN",
+      "children": [
+        {
+          "type": "SCAN",
+          "table": "k3"
+        },
+        {
+          "type": "JOIN",
+          "children": [
+            {
+              "type": "SCAN",
+              "table": "k2"
+            },
+            {
+              "type": "SCAN",
+              "table": "p1k"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

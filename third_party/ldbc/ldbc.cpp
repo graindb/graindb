@@ -104,7 +104,22 @@ std::string ldbc::get_micro_query(int query, int param) {
 	return LDBC_QUERIES_MICRO[query - 1] + to_string(param) + ";";
 }
 
-std::string ldbc::get_default_jo(std::string jo_name) {
+std::string ldbc::read_file(const std::string& file) {
+	auto file_system = make_unique<FileSystem>();
+	if (!file_system->FileExists(file)) {
+		throw invalid_argument("File " + file + " not found.");
+	}
+	ifstream ifs(file);
+	string jo_json((istreambuf_iterator<char>(ifs)), (istreambuf_iterator<char>()));
+	return jo_json;
+}
+
+std::string ldbc::get_light_query_with_views(const string& query, int sf) {
+	auto file_path = "third_party/ldbc/queries/light/sf10-views/" + query + ".sql";
+	return read_file(file_path);
+}
+
+std::string ldbc::get_default_jo(const std::string& jo_name) {
 	if (jo_name == "EMPTY") {
 		return "{}";
 	}
@@ -118,7 +133,7 @@ std::string ldbc::get_default_jo(std::string jo_name) {
 	return jo_json;
 }
 
-std::string ldbc::get_optimized_jo(std::string jo_name) {
+std::string ldbc::get_optimized_jo(const std::string& jo_name) {
 	if (jo_name == "EMPTY") {
 		return "{}";
 	}
@@ -130,4 +145,14 @@ std::string ldbc::get_optimized_jo(std::string jo_name) {
 	ifstream ifs(jo_file_name);
 	string jo_json((istreambuf_iterator<char>(ifs)), (istreambuf_iterator<char>()));
 	return jo_json;
+}
+
+std::string ldbc::get_views_jo(const std::string& jo_name) {
+	auto file_path = "third_party/ldbc/jos/views/" + jo_name + ".json";
+	return read_file(file_path);
+}
+
+std::string ldbc::get_views(const std::string& query) {
+	auto file_path = "third_party/ldbc/queries/light/views/" + query + ".sql";
+	return read_file(file_path);
 }

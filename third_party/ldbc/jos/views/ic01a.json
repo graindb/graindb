@@ -1,0 +1,13 @@
+{
+  "type": "JOIN",
+  "children": [
+    {
+      "type": "SCAN",
+      "table": "p2pl"
+    },
+    {
+      "type": "SCAN",
+      "table": "p1k"
+    }
+  ]
+}
