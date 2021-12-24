@@ -81,14 +81,6 @@ void ldbc::dbgen_micro(duckdb::Connection &conn, int sf, int qgid, bool enableRA
 	}
 }
 
-std::string ldbc::get_query(int query, int sf) {
-	if (query <= 0 || query > LDBC_QUERIES_COUNT) {
-		throw SyntaxException("Out of range LCBD SNB query number %d", query);
-	}
-	assert(sf == 10);
-	return LDBC_QUERIES_SF10[query - 1];
-}
-
 std::string ldbc::get_light_query(int query, int sf) {
 	if (query <= 0 || query > LDBC_LIGHT_QUERIES_COUNT) {
 		throw SyntaxException("Out of range LCBD SNB query number %d", query);

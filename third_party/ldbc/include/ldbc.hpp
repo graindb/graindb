@@ -17,7 +17,6 @@ string get_ddl(int num);
 std::string get_views(const std::string& query);
 
 //! Gets the specified LDBC SNB Query number as a string
-std::string get_query(int query, int sf);
 std::string get_light_query(int query, int sf);
 std::string get_light_query_with_views(const string& query, int sf);
 std::string get_micro_query(int query, int param);

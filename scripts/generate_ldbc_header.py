@@ -52,16 +52,8 @@ def create_csv_header(csv_dir):
 # create_csv_header(csv_dir)
 
 ldbc_dir = 'third_party/ldbc'
-ldbc_queries_sf1 = os.path.join(ldbc_dir, 'queries', 'sf1')
-ldbc_queries_sf10 = os.path.join(ldbc_dir, 'queries', 'sf10')
-ldbc_queries_sf30 = os.path.join(ldbc_dir, 'queries', 'sf30')
 ldbc_queries_micro = os.path.join(ldbc_dir, 'queries', 'micro')
-ldbc_light_queries_sf1 = os.path.join(ldbc_dir, 'queries', 'light', 'sf1')
 ldbc_light_queries_sf10 = os.path.join(ldbc_dir, 'queries', 'light', 'sf10')
-ldbc_light_queries_sf30 = os.path.join(ldbc_dir, 'queries', 'light', 'sf30')
-ldbc_answers_sf1 = os.path.join(ldbc_dir, 'answers', 'sf1')
-ldbc_answers_sf10 = os.path.join(ldbc_dir, 'answers', 'sf10')
-ldbc_answers_sf30 = os.path.join(ldbc_dir, 'answers', 'sf30')
 ldbc_header = os.path.join(ldbc_dir, 'include', 'ldbc_constants.hpp')
 
 
@@ -165,16 +157,8 @@ const int LDBC_MICRO_QUERIES_COUNT = 38;
 
 """
     # write the queries
-    result += write_dir(ldbc_queries_sf1, "LDBC_QUERIES_SF1")
-    result += write_dir(ldbc_queries_sf10, "LDBC_QUERIES_SF10")
-    result += write_dir(ldbc_queries_sf30, "LDBC_QUERIES_SF30")
     result += write_dir(ldbc_queries_micro, "LDBC_QUERIES_MICRO")
-    result += write_dir(ldbc_light_queries_sf1, "LDBC_LIGHT_QUERIES_SF1")
     result += write_dir(ldbc_light_queries_sf10, "LDBC_LIGHT_QUERIES_SF10")
-    result += write_dir(ldbc_light_queries_sf30, "LDBC_LIGHT_QUERIES_SF30")
-    result += write_dir(ldbc_answers_sf1, "LDBC_ANSWERS_SF1")
-    result += write_dir(ldbc_answers_sf10, "LDBC_ANSWERS_SF10")
-    result += write_dir(ldbc_answers_sf30, "LDBC_ANSWERS_SF30")
 
     with open(ldbc_header, 'w+') as f:
         f.write(result)
