@@ -7,198 +7,145 @@ using namespace std;
 
 #define SF 10
 
-#define LDBC_QUERY_BODY(QNR, ENABLE_RAIS, JO_NAME)                                                 \
-    virtual void Load(DuckDBBenchmarkState* state) { ldbc::dbgen(state->conn, SF, ENABLE_RAIS); }  \
-    virtual string GetQuery() { return ldbc::get_light_query_with_views(QNR, SF); }                \
-    virtual string GetJO() { return ldbc::get_views_jo(JO_NAME); }                                 \
-    virtual string GetViews() { return ldbc::get_views(QNR); }                                     \
-    virtual string VerifyResult(QueryResult* result) {                                             \
-        if (!result->success) {                                                                    \
-            return result->error;                                                                  \
-        }                                                                                          \
-        return "";                                                                                 \
-    }                                                                                              \
-    virtual string BenchmarkInfo() {                                                               \
-        return StringUtil::Format(                                                                 \
-            "LDBC Light Q%d: %s", QNR, ldbc::get_light_query_with_views(QNR, SF).c_str());         \
-    }
+#define LDBC_QUERY_BODY(QNR, ENABLE_RAIS, JO_NAME)                                                                     \
+	virtual void Load(DuckDBBenchmarkState *state) {                                                                   \
+		ldbc::dbgen(state->conn, SF, ENABLE_RAIS);                                                                     \
+	}                                                                                                                  \
+	virtual string GetQuery() {                                                                                        \
+		return ldbc::get_light_query_with_views(QNR, SF);                                                              \
+	}                                                                                                                  \
+	virtual string GetJO() {                                                                                           \
+		return ldbc::get_views_jo(JO_NAME);                                                                            \
+	}                                                                                                                  \
+	virtual string GetViews() {                                                                                        \
+		return ldbc::get_views(QNR);                                                                                   \
+	}                                                                                                                  \
+	virtual string VerifyResult(QueryResult *result) {                                                                 \
+		if (!result->success) {                                                                                        \
+			return result->error;                                                                                      \
+		}                                                                                                              \
+		return "";                                                                                                     \
+	}                                                                                                                  \
+	virtual string BenchmarkInfo() {                                                                                   \
+		return StringUtil::Format("LDBC Light Q%d: %s", QNR, ldbc::get_light_query_with_views(QNR, SF).c_str());       \
+	}
 
-// IS01
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS01, "[LDBC_LIGHT_VIEWS]")
+// IS1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS1, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("is01", false, "EMPTY");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS01)
+FINISH_BENCHMARK(SNB_M_VIEWS_IS1)
 
-// IS02-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS02_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is02_1", false, "is02_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS02_1)
+// IS2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS2, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("is02", false, "is02");
+FINISH_BENCHMARK(SNB_M_VIEWS_IS2)
 
-// IS02-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS02_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is02_2", false, "is02_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS02_2)
+// IS3
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS3, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("is03", false, "is03");
+FINISH_BENCHMARK(SNB_M_VIEWS_IS3)
 
-// IS03-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS03_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is03_1", false, "is03_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS03_1)
-
-// IS03-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS03_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is03_2", false, "is03_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS03_2)
-
-// IS05
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS05, "[LDBC_LIGHT_VIEWS]")
+// IS5
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS5, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("is05", false, "EMPTY");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS05)
+FINISH_BENCHMARK(SNB_M_VIEWS_IS5)
 
-// IS06
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS06, "[LDBC_LIGHT_VIEWS]")
+// IS6
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS6, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("is06", false, "is06");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS06)
+FINISH_BENCHMARK(SNB_M_VIEWS_IS6)
 
-// IS07-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS07_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is07_1", false, "is07_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS07_1)
+// IS7
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IS7, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("is07", false, "is07");
+FINISH_BENCHMARK(SNB_M_VIEWS_IS7)
 
-// IS07-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IS07_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("is07_2", false, "is07_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IS07_2)
-
-// IC01A
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC01A, "[LDBC_LIGHT_VIEWS]")
+// IC1-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC1_1, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic01a", false, "ic01a");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC01A)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC1_1)
 
-// IC01B
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC01B, "[LDBC_LIGHT_VIEWS]")
+// IC1-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC1_2, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic01b", false, "ic01b");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC01B)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC1_2)
 
-// IC01C
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC01C, "[LDBC_LIGHT_VIEWS]")
+// IC1-3
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC1_3, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic01c", false, "ic01c");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC01C)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC1_3)
 
-// IC02-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC02_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic02_1", false, "ic02_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC02_1)
+// IC2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC2, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic02", false, "ic02");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC2)
 
-// IC02-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC02_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic02_2", false, "ic02_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC02_2)
+// IC3-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC3_1, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic03a", false, "ic03a");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC3_1)
 
-// IC03A-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic03a_1", false, "ic03a_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_1)
-
-// IC03A-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic03a_2", false, "ic03a_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_2)
-
-// IC03A-3
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_3, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic03a_3", false, "ic03a_3");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC03A_3)
-
-// IC03B-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC03B_1, "[LDBC_LIGHT_VIEWS]")
+// IC3-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC3_2, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic03b", false, "ic03b");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC03B_1)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC3_2)
 
-// IC04
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC04, "[LDBC_LIGHT_VIEWS]")
+// IC4
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC4, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic04", false, "ic04");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC04)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC4)
 
-// IC05A-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC05A_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic05a_1", false, "ic05a_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC05A_1)
+// IC5-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC5_1, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic05a", false, "ic05a");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC5_1)
 
-// IC05A-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC05A_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic05a_2", false, "ic05a_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC05A_2)
+// IC5-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC5_2, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic05b", false, "ic05b");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC5_2)
 
-// IC05B-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC05B_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic05b_1", false, "ic05b_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC05B_1)
+// IC6-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC6_1, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic06a", false, "ic06a");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC6_1)
 
-// IC05B-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC05B_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic05b_2", false, "ic05b_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC05B_2)
-
-// IC06A-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC06A_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic06a_1", false, "ic06a_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC06A_1)
-
-// IC06A-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC06A_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic06a_2", false, "ic06a_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC06A_2)
-
-// IC06B
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC06B, "[LDBC_LIGHT_VIEWS]")
+// IC6-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC6_2, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic06b", false, "ic06b");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC06B)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC6_2)
 
-// IC07-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC07_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic07_1", false, "ic07_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC07_1)
+// IC7
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC7, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic07", false, "ic07");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC7)
 
-// IC07-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC07_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic07_2", false, "ic07_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC07_2)
-
-// IC08
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC08, "[LDBC_LIGHT_VIEWS]")
+// IC8
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC8, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic08", false, "ic08");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC08)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC8)
 
-// IC09A
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC09A, "[LDBC_LIGHT_VIEWS]")
+// IC9-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC9_1, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic09a", false, "ic09a");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC09A)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC9_1)
 
-// IC09B
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC09B, "[LDBC_LIGHT_VIEWS]")
+// IC9-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC9_2, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic09b", false, "ic09b");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC09B)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC9_2)
 
-// IC10
-// DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC10, "[LDBC_LIGHT_VIEWS]")
-// LDBC_QUERY_BODY("ic10", false, "ic10");
-// FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC10)
-
-// IC11A
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC11A, "[LDBC_LIGHT_VIEWS]")
+// IC11-1
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC11_1, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic11a", false, "ic11a");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC11A)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC11_1)
 
-// IC11B
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC11B, "[LDBC_LIGHT_VIEWS]")
+// IC11-2
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC11_2, "[SNB_M_VIEWS]")
 LDBC_QUERY_BODY("ic11b", false, "ic11b");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC11B)
-
-// IC12-1
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC12_1, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic12_1", false, "ic12_1");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC12_1)
+FINISH_BENCHMARK(SNB_M_VIEWS_IC11_2)
 
 // IC12-2
-DUCKDB_BENCHMARK(LDBC_LIGHT_VIEWS_IC12_2, "[LDBC_LIGHT_VIEWS]")
-LDBC_QUERY_BODY("ic12_2", false, "ic12_2");
-FINISH_BENCHMARK(LDBC_LIGHT_VIEWS_IC12_2)
+DUCKDB_BENCHMARK(SNB_M_VIEWS_IC12, "[SNB_M_VIEWS]")
+LDBC_QUERY_BODY("ic12", false, "ic12");
+FINISH_BENCHMARK(SNB_M_VIEWS_IC12)
