@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import sys
 
 list1 = []
 list2 = []
@@ -7,8 +8,11 @@ list4 = []
 
 data = []
 
-# source_file = str(sys.argv[1])
-source_file = "/Users/guodong/Developer/graindb-benchmark/ldbc_sf10_ablation.csv"
+if len(sys.argv) != 2:
+    print("USAGE: python3 scripts/plot_boxplot_snb.py SOURCE_FILE[DuckDB, DuckDB-MV, GRainDB, GFDB]")
+    sys.exit()
+
+source_file = str(sys.argv[1])
 
 px = 1 / plt.rcParams['figure.dpi']
 with open(source_file, 'r') as source:
@@ -29,13 +33,10 @@ with open(source_file, 'r') as source:
     data.append(list4)
 
 figure, axes = plt.subplots()
-# plt.yscale('log')
-# plt.ylabel('runtime in msec (log scale)')
 axes.set_ylabel('runtime in msec (log scale)', fontsize=16)
-# axes.set_title('JOB', fontsize=16)
 axes.set_yscale('log')
 axes.tick_params(axis='both', labelsize=14)
-axes.boxplot(data, patch_artist=True, labels=['DUCKDB', 'GR-RSJ', 'GR-ERI', 'GR-FULL'], showmeans=False)
+axes.boxplot(data, patch_artist=True, labels=['DUCKDB', 'DUCKDB-MV', 'GRAINDB', 'GFDB'], showmeans=False)
 
 plt.tight_layout()
 plt.show()

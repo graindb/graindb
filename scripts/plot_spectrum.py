@@ -12,10 +12,11 @@ matplotlib.rc('font', **font)
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description='given input and output file abostule paths, plots the histogram chart.')
+        description='Given input and output file absolute paths, plots the histogram chart. Input csv file contains '
+                    '[DuckDB, GRainDB] for each query.')
     parser.add_argument('file', help='input file to plot')
     parser.add_argument('-o', '--output', help='output directory to save to')
-    parser.add_argument('-l', '--labels', nargs='+', help='labels to plot')
+    parser.add_argument('-t', '--title', help='plot title')
     parser.add_argument('-w', '--width',
                         help="figure's width", type=float, default=6)
     parser.add_argument('-e', '--height',
@@ -38,17 +39,14 @@ def get_data(data_file):
     return x_data, y_data
 
 
-def plot_histogram(width, height, input_file, output_file):
+def plot_histogram(width, height, input_file, output_file, title):
     x_data, y_data = get_data(input_file)
-    data = []
-    data.append(x_data)
-    data.append(y_data)
+    data = [x_data, y_data]
     plt.figure(figsize=(width, height))
     plt.rcParams['axes.xmargin'] = 0
     ax = plt.gca()
     ax.grid
     ax.tick_params(axis='both', which='both', pad=3, labelsize=14)
-    # ax.set_xlabel('Plans', fontsize=12)
     n, bins, patches = plt.hist(data, 40, cumulative=True, alpha=0.0)
     print(n)
     print(bins)
@@ -59,21 +57,20 @@ def plot_histogram(width, height, input_file, output_file):
     plt.plot(x, n[0], color='green', label='DuckDB', linestyle='dashed')
     plt.plot(x, n[1], color='orange', label='GRainDB')
 
-    # plt.plot(x[8] - bin_width, n[0][0], "s", color='green')
     plt.plot(x[0], n[1][0], "^", color='orange')
     ax.set_ylabel('Num of plans', fontsize=18)
     ax.set_xlabel('Query execution time (in msec)', fontsize=18)
     ax.legend(fontsize='small', labelcolor=['green', 'orange'])
-    ax.set_title('JOB, Q1a', fontsize=20)
+    ax.set_title(title, fontsize=20)
     plt.legend(prop={'size': 18})
-    # plt.show()
-    plt.savefig(fname=output_file, format='pdf',
-                bbox_inches='tight')
+    plt.show()
+    # plt.savefig(fname=output_file, format='pdf',
+    #             bbox_inches='tight')
 
 
 def main():
     args = parse_args()
-    plot_histogram(args.width, args.height, args.file, args.output)
+    plot_histogram(args.width, args.height, args.file, args.output, args.title)
 
 
 if __name__ == '__main__':
