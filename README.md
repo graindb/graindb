@@ -32,12 +32,6 @@ changes.
 > python3 scripts/extract_query_latency.py evaluations/job_graindb.out evaluations/job_graindb_avg.out
 ```
 
-#### Draw the boxplot
-```shell
->
-```
-
-
 ### SNB-M: Graph Workload with Selective Many-to-Many Joins (8.2.2 & 8.2.3)
 #### Run JOB evaluations on DuckDB, DuckDB-MV and GRainDB:
 ```shell
@@ -58,11 +52,6 @@ changes.
 >
 ```
 
-#### Draw the boxplot
-```shell
->
-```
-
 ### TPC-H: Traditional OLAP Workloads (8.2.4)
 #### Run TPC-H evaluations on DuckDB and GRainDB:
 ```shell
@@ -76,16 +65,76 @@ changes.
 > python3 scripts/extract_query_latency.py evaluations/tpch_graindb.out evaluations/tpch_graindb_avg.out
 ```
 
-#### Run GraphflowDB on SNB-M:
+## Detailed Evaluation
+### Ablation Study (8.3.1)
+Configurations for GRainDB:
+- GR-FULL. Set both `ENABLE_RAI_JOIN_MERGE` and `ENABLE_ALISTS` to `true`.
+- GR-JM. Set `ENABLE_RAI_JOIN_MERGE` to `false`, and keep `ENABLE_ALISTS` to `true`.
+- GR-JM-RSJ. Set both `ENABLE_RAI_JOIN_MERGE` and `ENABLE_ALISTS` to `false`.
+
+Under each configuration, run following command to get GRainDB evaluation result on SNB-M under that configuration:
+```shell
+> ./build/release/benchmark/benchmark_runner "LDBC_LIGHT_OPTIMIZED_Q[0-9][0-9][0-9]A" --out=evaluations/snb_graindb_configuration_x.out
+```
+
+### Performance of Predefined Joins Under Varying Entity vs Relationship Table Selectivity (8.3.2)
+- DuckDB and GRainDB
+```shell
+> ./build/release/benchmark/benchmark_runner
+```
+
+- GraphflowDB
 ```shell
 >
 ```
 
-## Detailed Evaluation
-### Ablation Study (8.3.1)
-
-### Performance of Predefined Joins Under Varying Entity vs Relationship Table Selectivity (8.3.2)
+- Neo4j
+```shell
+> 
+```
 
 ### Plan Spectrum Analyses (8.3.3)
 
-### Storage Costs (8.3.4)
+```shell
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q01/ 1 1 225
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q02/ 5 1 225
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q03/ 9 1 41
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q04/ 12 1 225
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q05/ 15 1 225
+> ./build/release/examples/spectrum_runner/spectrum_runner spectrum_jos/Q06/ 18 1 225
+```
+
+### Plotting
+#### Boxplot
+- End to end benchmarks: JOB, SNB-M, TPC-H
+```shell
+> python3 scripts/plot_boxplot_job.py evaluations/job.csv
+> python3 scripts/plot_boxplot_snb.py evaluations/snb.csv
+> python3 scripts/plot_boxplot_tpch.py evaluations/tpch.csv
+```
+
+- Ablation
+```shell
+> python3 scripts/plot_boxplot_ablation.py evaluations/ablation.csv
+```
+
+#### Selectivity
+- MICRO-P
+```shell
+> python3 scripts/plot_selectivity.py evaluations/micro-p.csv
+```
+
+- MICRO-K
+```shell
+> python3 scripts/plot_selectivity.py evaluations/micro-k.csv
+```
+
+#### Spectrum
+```shell
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q1.csv -t q1a
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q2.csv -t q2a
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q3.csv -t q3a
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q4.csv -t q4a
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q5.csv -t q5a
+> python3 scripts/plot_spectrum.py evaluations/spectrum_q6.csv -t q6a
+```
