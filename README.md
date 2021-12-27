@@ -18,7 +18,7 @@ Run `make` in the root directory to compile the sources.
 ## End-To-End Benchmarks
 
 ### JOB: Relational Workload with Selective Many-to-Many Joins (8.2.1)
-#### Run JOB evaluations on DuckDB and GRainDB:
+#### Run evaluations of DuckDB and GRainDB on JOB:
 ```shell
 > ./build/release/benchmark/benchmark_runner "IMDB_113_Q[0-9][0-9][0-9]" --out=evaluations/job_duckdb.out
 > ./build/release/benchmark/benchmark_runner "IMDB_113_Q[0-9][0-9][0-9]A" --out=evaluations/job_graindb.out
@@ -31,7 +31,7 @@ Run `make` in the root directory to compile the sources.
 ```
 
 ### SNB-M: Graph Workload with Selective Many-to-Many Joins (8.2.2 & 8.2.3)
-#### Run JOB evaluations on DuckDB, DuckDB-MV and GRainDB:
+#### Run evaluations of DuckDB, DuckDB-MV and GRainDB on SNB-M:
 ```shell
 > ./build/release/benchmark/benchmark_runner "LDBC_LIGHT_OPTIMIZED_Q[0-9][0-9][0-9]" --out=evaluations/snb_duckdb.out
 > ./build/release/benchmark/benchmark_runner "LDBC_LIGHT_VIEWS_.*" --out=evaluations/duckdb_mv.out
